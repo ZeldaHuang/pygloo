@@ -91,11 +91,11 @@ PYBIND11_MODULE(pygloo, m) {
   m.def("send", &pygloo::send_wrapper, pybind11::arg("context") = nullptr,
         pybind11::arg("sendbuf") = nullptr, pybind11::arg("size") = nullptr,
         pybind11::arg("datatype") = nullptr, pybind11::arg("peer") = nullptr,
-        pybind11::arg("tag") = 0);
+        pybind11::arg("tag") = 0, pybind11::call_guard<pybind11::gil_scoped_release>());
   m.def("recv", &pygloo::recv_wrapper, pybind11::arg("context") = nullptr,
         pybind11::arg("recvbuf") = nullptr, pybind11::arg("size") = nullptr,
         pybind11::arg("datatype") = nullptr, pybind11::arg("peer") = nullptr,
-        pybind11::arg("tag") = 0);
+        pybind11::arg("tag") = 0, pybind11::call_guard<pybind11::gil_scoped_release>());
 
   m.def("broadcast", &pygloo::broadcast_wrapper,
         pybind11::arg("context") = nullptr, pybind11::arg("sendbuf") = nullptr,
